@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <title>User List</title>
+</head>
+<body>
+    <div class = "containter">
+        <h1>All the Users</h1>
+
+        <div class = "box">
+            <div class = "column" id = "id">
+                <h3>ID</h3>
+                <ul>
+                    {% for users in user_list %}
+                        <li>{{ users.id }}</li>
+                    {% endfor %}
+                </ul>
+            </div>   
+            <div class = "column">     
+                <h3>Name</h3>
+                <ul>
+                    {% for users in user_list %}
+                        <li>{{ users.first_name }} {{ users.last_name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>   
+            <div class = "column">
+                <h3>Email</h3>
+                <ul>
+                    {% for users in user_list %}
+                        <li>{{ users.email }}</li>
+                    {% endfor %}
+                </ul>
+            </div>   
+            <div class = "column" id = "age">
+                <h3>Age</h3>
+                <ul>
+                    {% for users in user_list %}
+                        <li>{{ users.age }}</li>
+                    {% endfor %}
+                </ul>
+            </div>   
+        </div>
+        <h1>Add a User</h1>
+        <div class = "input">
+            <form action="/process" method="post">
+                {% csrf_token %}
+                <p>First Name: <input name="first" type="text"></p>
+                <p>Last Name: <input name="last" type="text"></p>
+                <p>Email: <input name="email" type="text"></p>
+                <p>Age: <input name="age" type="number"></p>
+
+                <button type="submit">Submit</button>
+              </form>
+        </div>
+
+    </div>
+</body>
+</html>
